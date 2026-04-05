@@ -41,6 +41,7 @@ dependencies:
 
 
   flutter_bloc: ^8.1.0
+  flutter_launcher_icons: ^0.14.4
 
 
 
@@ -96,3 +97,9 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/Screenshot 2026-04-05 163638.png"
+  min_sdk_android: 21 # android min sdk min:16, default 21

@@ -18,14 +18,89 @@ class charector_Screans extends StatefulWidget {
 
 class _charector_ScreansState extends State<charector_Screans> {
   late List<charectorsmodel>allcharector;
+  final  textcontroler=TextEditingController();
+  late List<charectorsmodel>searchedcharector;
+    bool is_Serased =false;
+
+   Widget searshedcharector(){
+     return TextField(
+       decoration: InputDecoration(
+         hintText: "find a chrector  ...",
+         border: InputBorder.none,
+         hintStyle:TextStyle(color: mycolors.myGray,fontSize: 18)
+
+       ),
+         style:TextStyle(color: mycolors.myGray,fontSize: 18),
+       controller:textcontroler ,
+       onChanged: (date) {
+         return addSeasheditemtolist(date);
+       }
+     );
+
+
+
+   }
+   void addSeasheditemtolist(String date){
+
+     searchedcharector=allcharector.where((ch)=>ch.name!.toLowerCase().startsWith(date)).toList();
+     setState(() {
+
+     });
+
+
+   }
+
+
+
   void initState(){
     super.initState();
-    allcharector=
+
         BlocProvider.of<CharectoresCubit>(context).getallcharectors();
 
   }
 
+List<Widget>controlSearshOrCansel(){
 
+     if(is_Serased){
+
+
+       return  [
+         IconButton(onPressed: (){
+
+clear();
+Navigator.pop(context);
+
+         }, icon: Icon(Icons.cancel_outlined,color: mycolors.myGray,))
+       ] ;
+     }else{
+       return
+      [
+        IconButton(onPressed: (){
+          startSearsh();
+
+       },icon: Icon(Icons.search,color: mycolors.myGray,),)
+
+       ];
+
+     }
+
+}
+
+
+void startSearsh(){
+     ModalRoute.of(context)?.addLocalHistoryEntry(LocalHistoryEntry(onRemove: clear));
+
+setState(() {
+  is_Serased=true;
+});
+}
+void clear(){
+
+
+     setState(() {
+       textcontroler.clear();
+     });
+}
 
   Widget BuildBlocBuilder()
   {
@@ -79,12 +154,12 @@ Widget Showlodingidecator (){
       crossAxisSpacing: 1,
       mainAxisExtent: 200, // أو احذفه تمامًا
     ),
-        itemCount: allcharector.length,
+        itemCount: textcontroler.text.isNotEmpty ? searchedcharector.length:allcharector.length,
         physics: ClampingScrollPhysics(),
         padding: EdgeInsets.zero,
         shrinkWrap: true,
         itemBuilder:(context,index){
-      return CharectorItem(charector: allcharector[index],);
+      return CharectorItem(charector:textcontroler.text.isNotEmpty ? searchedcharector[index]:allcharector[index],);
 
 
     } );
@@ -92,12 +167,19 @@ Widget Showlodingidecator (){
 
 
   }
+Widget buildabbaar(){
 
+
+     return Text('Charector');
+}
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(backgroundColor: mycolors.myyelo,title: Text('Charectors',
-          style: TextStyle(color: mycolors.myGray,))),
+      appBar: AppBar(backgroundColor: mycolors.myyelo,
+
+          title:is_Serased?searshedcharector():buildabbaar(),
+leading: is_Serased?BackButton(color: Colors.grey,):Container(),
+      actions:controlSearshOrCansel() ,),
       body:BuildBlocBuilder(),
 
     );
