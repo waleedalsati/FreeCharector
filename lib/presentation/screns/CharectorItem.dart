@@ -16,7 +16,7 @@ class CharectorItem extends StatelessWidget {
 
 
 
-        Navigator.push(context, MaterialPageRoute(builder: (context)=>charectormodels(charectors: charector,),),);
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>CharectorModels(charectors: charector,),),);
 
       },
       child: Container(
