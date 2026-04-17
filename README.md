@@ -1,16 +1,58 @@
-# flutter_breaking
+# Character App (Flutter)
 
-A new Flutter project.
+## 📌 Description
 
-## Getting Started
+A Flutter application that fetches and displays characters from a free API.
+Users can browse characters and search for them بسهولة.
 
-This project is a starting point for a Flutter application.
+## 🚀 Features
 
-A few resources to get you started if this is your first Flutter project:
+* Fetch characters from API
+* Display characters in a list/grid
+* Search characters by name
+* View character details
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## 📱 Screenshots
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<img width="1080" height="2400" alt="image" src="https://github.com/user-attachments/assets/fd0b929c-7b46-4349-af2a-66534da84898" />
+
+
+## 🛠️ Tech Stack
+
+* Flutter
+* Dart
+*  Dio package
+* REST API
+
+## 🔗 API
+
+This app uses a free public API to fetch character data.
+
+## ⚙️ Getting Started
+
+
+
+
+## 📂 Project Structure
+
+```
+lib/
+ ├── busines_logic /____
+                       |__ cubit
+                       |__ state
+ ├── data /__
+            |__ servese
+            |__ repos
+            |__ models
+ ├── presentation/
+ ├── constant/
+ └── main.dart
+```
+
+## 🔍 How It Works
+
+* The app sends requests to the API
+* Data is parsed into models
+* UI updates using setState  / Bloc 
+
+
